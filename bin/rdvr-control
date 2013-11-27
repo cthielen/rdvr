@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'rdvr'
+
+unless ARGV.length == 1
+  puts "Usage: rdvr-control <command>\n"
+  exit
+end
+
+case ARGV[0]
+  when 'help'
+    puts "Valid commands:\n"
+    puts "\tlist   - List all scheduled shows\n"
+    puts "\tadd    - Schedule a show\n"
+    puts "\tremove - Remove a show schedule\n"
+    puts "\tedit   - Edit a show schedule\n"
+    exit
+  when 'list'
+    Show.all.each do |s|
+      puts "#{s.title}\n"
+    end
+    exit
+  when 'add'
+
+  when 'remove'
+
+  when 'edit'
+
+  else
+    puts "Unkown command #{ARGV[0]}\n"
+    exit
+end
+

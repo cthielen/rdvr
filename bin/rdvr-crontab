@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+# Records a single show
+require 'rdvr'
+
+schedule_file = "#{File.dirname(__FILE__)}/../lib/crontab.rb"
+`whenever -f #{schedule_file} --update-crontab`
+
