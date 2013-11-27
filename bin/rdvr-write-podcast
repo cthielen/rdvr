@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'rdvr'
+
+unless ARGV.length == 2
+  puts "Usage: rdvr-write-podcast <directory> <http-equivalent>\n"
+  exit
+end
+
+feed_directory = ARGV[0]
+feed_url = ARGV[1]
+
+# Loop over each show and output its podcast XML
+Show.all.each do |show|
+  File.open(feed_directory + "/show-#{show.id}.xml", 'w') do |file|
+    file.write '<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>' + show.title + '</title>
+    <description>' + show.description.to_s + '</description>
+    <link>' + feed_directory + '</link>
+    <language>en-us</language>
+    <copyright></copyright>
+    <lastBuildDate>' + Time.now.rfc822 + '</lastBuildDate>
+    <pubDate>' + Time.now.rfc822 + '</pubDate>'
+
+    show.recordings.each do |recording|
+      file_url = URI.encode(feed_url + '/' + recording.filename[recording.filename.rindex('/') + 1..recording.filename.length])
+      file.write '
+      <item>
+      <title>' + show.title + ' for ' + recording.started.rfc822 + '</title>
+      <link></link>
+      <guid>' + file_url + '</guid>
+      <description></description>
+      <enclosure url="' + file_url + '" length="' + File.open(recording.filename, 'r').size.to_s + '" type="audio/mpeg"/>
+      <category></category>
+      <pubDate>' + recording.started.rfc822 + '</pubDate>
+      </item>'
+    end
+    
+    file.write '</channel></rss>'
+  end
+end

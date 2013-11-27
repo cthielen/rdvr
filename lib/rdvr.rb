@@ -1,5 +1,7 @@
 require "rdvr/version"
 
+Bundler.require(:default)
+
 # Ensure rdvr data directory exists
 `mkdir ~/.rdvr >& /dev/null`
 

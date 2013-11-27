@@ -17,11 +17,37 @@ case ARGV[0]
     exit
   when 'list'
     Show.all.each do |s|
-      puts "#{s.title}\n"
+      puts "'#{s.title}' by '#{s.artist}' #{s.weekly ? 'weekly' : 'once'} at #{s.start} for #{s.duration} minutes on #{s.host}:#{s.port}#{s.url}\n"
     end
     exit
   when 'add'
-
+    s = Show.new
+    print "Title (e.g. The Dusty Show): "
+    STDOUT.flush
+    s.title = STDIN.gets.chomp
+    print "Artist (e.g. Clay Pigeon): "
+    STDOUT.flush
+    s.artist = STDIN.gets.chomp
+    print "Start (e.g. 2013-11-26 22:00:00): "
+    STDOUT.flush
+    s.start = STDIN.gets.chomp
+    print "Duration (in minutes e.g. 90): "
+    STDOUT.flush
+    s.duration = STDIN.gets.chomp
+    print "Weekly? (e.g. t/f): "
+    STDOUT.flush
+    s.weekly = STDIN.gets.chomp
+    print "Host (e.g. kdvs.org): "
+    STDOUT.flush
+    s.host = STDIN.gets.chomp
+    print "Port (e.g. 8000): "
+    STDOUT.flush
+    s.port = STDIN.gets.chomp
+    print "URL (e.g. /kdvs128): "
+    STDOUT.flush
+    s.url = STDIN.gets.chomp
+    s.save
+    puts "Saved with ID #{s.id}"
   when 'remove'
 
   when 'edit'

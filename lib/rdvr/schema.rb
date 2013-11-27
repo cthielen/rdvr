@@ -7,13 +7,12 @@ class Schema < ActiveRecord::Migration
       t.string   :artist
       t.text     :description
       t.string   :genre
-      t.integer  :dotw
+      t.boolean  :weekly
       t.datetime :start
       t.integer  :duration
       t.string   :host
       t.integer  :port
       t.string   :url
-      t.integer  :schedule_id
     end
 
     create_table :recordings do |t|

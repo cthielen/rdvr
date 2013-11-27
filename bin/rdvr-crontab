@@ -3,6 +3,7 @@
 # Records a single show
 require 'rdvr'
 
-schedule_file = "#{File.dirname(__FILE__)}/../lib/crontab.rb"
+schedule_file = "#{File.dirname(__FILE__)}/../lib/rdvr/crontab.rb"
 `whenever -f #{schedule_file} --update-crontab`
 
+puts "Your crontab has been updated."

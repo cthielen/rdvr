@@ -4,9 +4,10 @@
 require 'rdvr'
 
 def generate_cronjob(show)
-  cron_timestamp = "#{show.start.min} #{show.start.hour} * * #{show.dotw}"
+  cron_timestamp = "#{show.start.min} #{show.start.hour} * * #{show.start.wday}"
 
-  command = "rdvr-record #{show.id}"
+  path = Gem::Specification.find_by_name("rdvr").gem_dir
+  command = "cd #{path} && bundle exec bin/rdvr-record #{show.id}"
   [cron_timestamp, command]
 end
 
@@ -16,4 +17,3 @@ Show.all.each do |s|
     command cron_info[1]
   end
 end
-

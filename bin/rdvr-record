@@ -36,4 +36,3 @@ r.finished = Time.now
 
 r.filename = "~/Music/radio-archives/#{filename}"
 r.save
-
