@@ -13,7 +13,7 @@ require "rdvr/which.rb"
 require "rdvr/schema.rb"
 
 module Rdvr
-  # Ensures the necessary command-line tools are installed
+  # Ensure the necessary command-line tools are installed
   def self.check_requirements
     # Certain environment variables must be defined for configuration to work correctly
     if ENV['RDVR_RECORDINGS_DIR'].nil?
@@ -54,6 +54,16 @@ module Rdvr
     end
     
     return true
+  end
+  
+  def self.write_podcast_feeds
+    path = Gem::Specification.find_by_name("rdvr").gem_dir
+    `#{path}/bin/rdvr-write-podcast`
+  end
+  
+  def self.update_crontab
+    path = Gem::Specification.find_by_name("rdvr").gem_dir
+    `#{path}/bin/rdvr-crontab`
   end
   
   abort unless check_requirements

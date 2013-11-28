@@ -48,6 +48,8 @@ case ARGV[0]
     s.url = STDIN.gets.chomp
     s.save
     puts "Saved with ID #{s.id}"
+
+    Rdvr::update_crontab
   when 'remove'
 
   when 'edit'

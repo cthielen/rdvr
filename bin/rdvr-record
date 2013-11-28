@@ -37,7 +37,4 @@ r.finished = Time.now
 r.filename = filename
 r.save
 
-# Update the podcast feeds
-path = Gem::Specification.find_by_name("rdvr").gem_dir
-
-`#{path}/bin/rdvr-write-podcast`
+Rdvr::write_podcast_feeds

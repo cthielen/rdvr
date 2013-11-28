@@ -23,7 +23,7 @@ Show.all.each do |show|
       file_url = URI.encode(feed_url + '/' + recording.filename)
       file.write '
       <item>
-      <title>' + show.title + ' for ' + recording.started.rfc822 + '</title>
+      <title>' + show.title + ' for ' + recording.started.strftime("%A %B %d, %Y") + '</title>
       <link></link>
       <guid>' + file_url + '</guid>
       <description></description>
