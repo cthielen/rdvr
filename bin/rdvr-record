@@ -31,8 +31,13 @@ filename = "#{s.artist} - #{s.title} (#{r.title}).mp3"
 r.finished = Time.now
 
 # Ensure recordings directory exists
-`mkdir -p ~/Music/radio-archives`
-`mv /tmp/#{Shellwords.escape filename} ~/Music/radio-archives/`
+`mkdir -p #{ENV['RDVR_RECORDINGS_DIR']}`
+`mv /tmp/#{Shellwords.escape filename} #{ENV['RDVR_RECORDINGS_DIR']}/`
 
-r.filename = "~/Music/radio-archives/#{filename}"
+r.filename = filename
 r.save
+
+# Update the podcast feeds
+path = Gem::Specification.find_by_name("rdvr").gem_dir
+
+`#{path}/bin/rdvr-write-podcast`

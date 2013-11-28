@@ -7,7 +7,7 @@ def generate_cronjob(show)
   cron_timestamp = "#{show.start.min} #{show.start.hour} * * #{show.start.wday}"
 
   path = Gem::Specification.find_by_name("rdvr").gem_dir
-  command = "cd #{path} && bundle exec bin/rdvr-record #{show.id}"
+  command = "cd #{path} && RDVR_RECORDINGS_DIR=\"#{ENV['RDVR_RECORDINGS_DIR']}\" RDVR_RECORDINGS_DIR_URL=\"#{ENV['RDVR_RECORDINGS_DIR_URL']}\" bundle exec bin/rdvr-record #{show.id}"
   [cron_timestamp, command]
 end
 

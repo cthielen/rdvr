@@ -3,7 +3,9 @@
 # Records a single show
 require 'rdvr'
 
-schedule_file = "#{File.dirname(__FILE__)}/../lib/rdvr/crontab.rb"
+path = Gem::Specification.find_by_name("rdvr").gem_dir
+
+schedule_file = "#{path}/lib/rdvr/crontab.rb"
 `whenever -f #{schedule_file} --update-crontab`
 
 puts "Your crontab has been updated with #{Show.count} shows."

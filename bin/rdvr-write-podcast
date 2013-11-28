@@ -2,13 +2,8 @@
 
 require 'rdvr'
 
-unless ARGV.length == 2
-  puts "Usage: rdvr-write-podcast <directory> <http-equivalent>\n"
-  exit
-end
-
-feed_directory = ARGV[0]
-feed_url = ARGV[1]
+feed_directory = ENV['RDVR_RECORDINGS_DIR']
+feed_url = ENV['RDVR_RECORDINGS_DIR_URL']
 
 # Loop over each show and output its podcast XML
 Show.all.each do |show|
@@ -25,14 +20,14 @@ Show.all.each do |show|
     <pubDate>' + Time.now.rfc822 + '</pubDate>'
 
     show.recordings.each do |recording|
-      file_url = URI.encode(feed_url + '/' + recording.filename[recording.filename.rindex('/') + 1..recording.filename.length])
+      file_url = URI.encode(feed_url + '/' + recording.filename)
       file.write '
       <item>
       <title>' + show.title + ' for ' + recording.started.rfc822 + '</title>
       <link></link>
       <guid>' + file_url + '</guid>
       <description></description>
-      <enclosure url="' + file_url + '" length="' + File.open(recording.filename, 'r').size.to_s + '" type="audio/mpeg"/>
+      <enclosure url="' + file_url + '" length="' + File.open(feed_directory + "/" + recording.filename, 'r').size.to_s + '" type="audio/mpeg"/>
       <category></category>
       <pubDate>' + recording.started.rfc822 + '</pubDate>
       </item>'
