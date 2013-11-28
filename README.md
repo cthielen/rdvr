@@ -1,24 +1,19 @@
-# Rdvr
+# RDVR ("Radio DVR")
 
-TODO: Write a gem description
+RDVR is a "radio DVR" allowing you to record and later stream Internet radio
+shows much like a traditional digital video recorder. It is primarily designed
+to record weekly programs from Shoutcast/Icecast streams and produce podcasts
+from those recordings.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'rdvr'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rdvr
+This software is under heavy development and should not be installed by those
+unwilling to dig into the internals of Ruby gems or C++ code.
 
 ## Usage
 
-TODO: Write usage instructions here
+This software is under heavy development and will have a usage section written
+once it is more complete.
 
 ## Contributing
 
