@@ -2,7 +2,7 @@
 
 require 'rdvr'
 
-unless ARGV.length == 1
+unless ARGV.length >= 1
   puts "Usage: rdvr-control <command>\n"
   exit
 end
@@ -17,7 +17,7 @@ case ARGV[0]
     exit
   when 'list'
     Show.all.each do |s|
-      puts "'#{s.title}' by '#{s.artist}' #{s.weekly ? 'weekly' : 'once'} at #{s.start} for #{s.duration} minutes on #{s.host}:#{s.port}#{s.url}\n"
+      puts "##{s.id} - '#{s.title}' by '#{s.artist}' #{s.weekly ? 'weekly' : 'once'} at #{s.start} for #{s.duration} minutes on #{s.host}:#{s.port}#{s.url}\n"
     end
     exit
   when 'add'
@@ -51,7 +51,19 @@ case ARGV[0]
 
     Rdvr::update_crontab
   when 'remove'
-
+    if ARGV.length != 2
+      puts "Need to specify a show ID, e.g. rdvr-control remove 5"
+      exit
+    end
+    show_id = ARGV[1]
+    s = Show.find_by_id(show_id)
+    if s
+      s.destroy
+      puts "Removed show ##{show_id}, '#{s.title}'."
+    else
+      puts "Could not find a show with ID #{show_id}."
+      exit
+    end
   when 'edit'
 
   else

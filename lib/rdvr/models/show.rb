@@ -1,3 +1,3 @@
 class Show < ActiveRecord::Base
-  has_many :recordings
+  has_many :recordings, :dependent => :destroy
 end
