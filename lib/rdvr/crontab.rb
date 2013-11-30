@@ -10,8 +10,10 @@ def generate_cronjob(show)
   
   # Cron timestamp is different between weekly and one-time recordings
   if show.weekly
+    # Show is weekly
     cron_timestamp = "#{show.start.min} #{show.start.hour} * * #{show.start.wday}"
-  else
+  elsif show.start
+    # Show is not weekly but still requires a 'start' (some shows do not have 'start', e.g. crawled feeds)
     cron_timestamp = "#{show.start.min} #{show.start.hour} #{show.start.day} #{show.start.month} #{show.start.wday}"
   end
 
