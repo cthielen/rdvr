@@ -8,3 +8,5 @@ Dir["#{path}/crawlers/**/*.rb"].each do |script|
   puts "Running crawler #{script} ..."
   load script
 end
+
+Rdvr::write_podcast_feeds
