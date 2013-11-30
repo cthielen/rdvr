@@ -30,6 +30,6 @@ Show.all.each do |s|
 end
 
 # Run crawlers daily
-every 1.day, :at => '1:30 am' do
+every 1.day do
   command "cd #{path} && RDVR_RECORDINGS_DIR=\"#{ENV['RDVR_RECORDINGS_DIR']}\" RDVR_RECORDINGS_DIR_URL=\"#{ENV['RDVR_RECORDINGS_DIR_URL']}\" #{which('bundle')} exec bin/rdvr-run-crawlers"
 end
