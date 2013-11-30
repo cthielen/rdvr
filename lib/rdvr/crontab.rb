@@ -4,7 +4,15 @@
 require 'rdvr'
 
 def generate_cronjob(show)
-  cron_timestamp = "#{show.start.min} #{show.start.hour} * * #{show.start.wday}"
+  # Don't need to schedule one time shows that have already passed
+  return false if not show.weekly and show.start < Time.now
+  
+  # Cron timestamp is different between weekly and one-time recordings
+  if show.weekly
+    cron_timestamp = "#{show.start.min} #{show.start.hour} * * #{show.start.wday}"
+  else
+    cron_timestamp = "#{show.start.min} #{show.start.hour} #{show.start.day} #{show.start.month} #{show.start.wday}"
+  end
 
   path = Gem::Specification.find_by_name("rdvr").gem_dir
   command = "cd #{path} && RDVR_RECORDINGS_DIR=\"#{ENV['RDVR_RECORDINGS_DIR']}\" RDVR_RECORDINGS_DIR_URL=\"#{ENV['RDVR_RECORDINGS_DIR_URL']}\" #{which('bundle')} exec bin/rdvr-record #{show.id}"
@@ -15,5 +23,5 @@ Show.all.each do |s|
   cron_info = generate_cronjob(s)
   every cron_info[0] do
     command cron_info[1]
-  end
+  end if cron_info
 end

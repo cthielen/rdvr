@@ -20,11 +20,11 @@ case ARGV[0]
       next_airing = s.start
       while(next_airing < Time.now)
         next_airing = next_airing + 604800
-      end
+      end if s.weekly
       if s.weekly
-        puts "(#{s.id}) '#{s.title}' by '#{s.artist}' airs #{next_airing.strftime("%A")}s at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minutes. Next airing is #{next_airing.strftime("%B %d, %Y")}."
+        puts "(#{s.id}) '#{s.title}' by '#{s.artist}' airs #{next_airing.strftime("%A")}s at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minute(s). Next airing is #{next_airing.strftime("%B %d, %Y")}."
       else
-        puts "##{s.id} - '#{s.title}' by '#{s.artist}' airs #{next_airing.strftime("%A %B %d, %Y")} at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minutes."
+        puts "##{s.id} - '#{s.title}' by '#{s.artist}' #{next_airing < Time.now ? 'aired' : 'airs'} #{next_airing.strftime("%A %B %d, %Y")} at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minute(s)."
       end
     end
     exit

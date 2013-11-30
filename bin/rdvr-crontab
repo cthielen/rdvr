@@ -19,5 +19,5 @@ if ARGV.length == 1
 else
   `whenever -f #{schedule_file} --update-crontab`
 
-  puts "Your crontab has been updated with #{Show.count} shows."
+  puts "Your crontab has been updated."
 end
