@@ -17,7 +17,15 @@ case ARGV[0]
     exit
   when 'list'
     Show.all.each do |s|
-      puts "##{s.id} - '#{s.title}' by '#{s.artist}' #{s.weekly ? 'weekly' : 'once'} at #{s.start} for #{s.duration} minutes on #{s.host}:#{s.port}#{s.url}\n"
+      next_airing = s.start
+      while(next_airing < Time.now)
+        next_airing = next_airing + 604800
+      end
+      if s.weekly
+        puts "(#{s.id}) '#{s.title}' by '#{s.artist}' airs #{next_airing.strftime("%A")}s at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minutes. Next airing is #{next_airing.strftime("%B %d, %Y")}."
+      else
+        puts "##{s.id} - '#{s.title}' by '#{s.artist}' airs #{next_airing.strftime("%A %B %d, %Y")} at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minutes."
+      end
     end
     exit
   when 'add'
