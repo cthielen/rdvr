@@ -5,7 +5,8 @@ require 'rdvr'
 
 def generate_cronjob(show)
   # Don't need to schedule one time shows that have already passed
-  return false if not show.weekly and show.start < Time.now
+  # Note: Not all shows have the 'weekly' and 'start' values filled in (e.g. crawled feeds)
+  return false if not show.weekly and show.start and show.start < Time.now
   
   # Cron timestamp is different between weekly and one-time recordings
   if show.weekly
