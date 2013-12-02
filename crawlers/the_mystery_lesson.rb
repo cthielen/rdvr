@@ -22,15 +22,15 @@ existing_files = show.recordings.map{|r| r.filename}
   link = episode.attributes['href']
   filename = link.to_s[link.to_s.rindex('/')+1..link.to_s.length]
   if existing_files.include? filename
-    puts "Skipping #{filename}, already downloaded."
+    #puts "Skipping #{filename}, already downloaded."
   else
-    print "Downloading #{filename} ..."
+    #print "Downloading #{filename} ..."
     
     open(link) do |f|
       open("#{ENV['RDVR_RECORDINGS_DIR']}/#{filename}", "wb") { |mp3| mp3.write f.read }
     end
     
-    print " done.\n"
+    #print " done.\n"
     
     r = Recording.new
     r.show = show
