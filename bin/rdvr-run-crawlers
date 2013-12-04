@@ -5,7 +5,7 @@ require 'rdvr'
 path = Gem::Specification.find_by_name("rdvr").gem_dir
 
 Dir["#{path}/crawlers/**/*.rb"].each do |script|
-  puts "Running crawler #{script} ..."
+  #puts "Running crawler #{script} ..."
   load script
 end
 
