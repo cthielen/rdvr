@@ -3,7 +3,9 @@ require 'sqlite3'
 
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
-  :database => "#{Dir.home}/.rdvr/db.sqlite"
+  :database => "#{Dir.home}/.rdvr/db.sqlite",
+  :wait_timeout => 0.25,
+  :timeout => 250
 )
 
 unless File.exist?("#{Dir.home}/.rdvr/db.sqlite")
