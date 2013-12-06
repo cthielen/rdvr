@@ -1,0 +1,5 @@
+* Add logging (which crawlers run when, any errors, etc.)
+* Ability to mirror podcasts
+* Web interface
+* Package as easily deployable gem
+
