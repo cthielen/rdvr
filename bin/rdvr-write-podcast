@@ -20,6 +20,8 @@ Show.all.each do |show|
     <pubDate>' + Time.now.rfc822 + '</pubDate>'
 
     show.recordings.each do |recording|
+      next unless File.exist?(feed_directory + "/" + recording.filename)
+
       file_url = URI.encode(feed_url + '/' + recording.filename)
       file.write '
       <item>
