@@ -26,7 +26,7 @@ case ARGV[0]
       elsif next_airing
         puts "(#{s.id}) - '#{s.title}' by '#{s.artist}' #{next_airing < Time.now ? 'aired' : 'airs'} #{next_airing.strftime("%A %B %d, %Y")} at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minute(s)."
       else
-        puts "##{s.id} - '#{s.title}' by '#{s.artist}'."
+        puts "(#{s.id}) - '#{s.title}' by '#{s.artist}'."
       end
     end
     exit
