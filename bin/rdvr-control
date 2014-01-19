@@ -84,22 +84,55 @@ case ARGV[0]
     show_id = ARGV[1]
     s = Show.find_by_id(show_id)
     if s
-      puts "\tTitle      : #{s.title}"
-      puts "\tArtist     : #{s.artist}"
-      puts "\tDescription: #{s.description}"
-      puts "\tGenre      : #{s.genre}"
-      puts "\tWeekly?    : #{s.weekly}"
-      puts "\tStart      : #{s.start}"
-      puts "\tDuration   : #{s.duration}"
-      puts "\tHost       : #{s.host}"
-      puts "\tPort       : #{s.port}"
-      puts "\tURL        : #{s.url}"
+      s.print_info
     else
       puts "Could not find a show with ID #{show_id}."
       exit
     end
   when 'edit'
+    if ARGV.length != 2
+      puts "Need to specify a show ID, e.g. rdvr-control edit 4"
+      exit
+    end
+    show_id = ARGV[1]
+    s = Show.find_by_id(show_id)
+    if s
+      puts "Existing information, you will be prompted to re-enter all information:"
+      s.print_info
+      
+      print "Title (e.g. The Dusty Show): "
+      STDOUT.flush
+      s.title = STDIN.gets.chomp
+      print "Artist (e.g. Clay Pigeon): "
+      STDOUT.flush
+      s.artist = STDIN.gets.chomp
+      print "Start (e.g. 2013-11-26 22:00:00): "
+      STDOUT.flush
+      s.start = STDIN.gets.chomp
+      print "Duration (in minutes e.g. 90): "
+      STDOUT.flush
+      s.duration = STDIN.gets.chomp
+      print "Weekly? (e.g. t/f): "
+      STDOUT.flush
+      s.weekly = STDIN.gets.chomp
+      print "Host (e.g. kdvs.org): "
+      STDOUT.flush
+      s.host = STDIN.gets.chomp
+      print "Port (e.g. 8000): "
+      STDOUT.flush
+      s.port = STDIN.gets.chomp
+      print "URL (e.g. /kdvs128): "
+      STDOUT.flush
+      s.url = STDIN.gets.chomp
+      s.save
+      
+      puts "Updated for ID #{s.id}"
 
+      Rdvr::update_crontab
+    else
+      puts "Could not find a show with ID #{show_id}."
+      exit
+    end
   else
     puts "Unkown command #{ARGV[0]}\n"
     exit
