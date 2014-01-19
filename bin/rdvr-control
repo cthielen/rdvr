@@ -14,6 +14,7 @@ case ARGV[0]
     puts "\tadd    - Schedule a show\n"
     puts "\tremove - Remove a show schedule\n"
     puts "\tedit   - Edit a show schedule\n"
+    puts "\tinfo   - Get details about a specific show\n"
     exit
   when 'list'
     Show.all.each do |s|
@@ -71,6 +72,28 @@ case ARGV[0]
       s.destroy
       Rdvr::update_crontab
       puts "Removed show ##{show_id}, '#{s.title}'."
+    else
+      puts "Could not find a show with ID #{show_id}."
+      exit
+    end
+  when 'info'
+    if ARGV.length != 2
+      puts "Need to specify a show ID, e.g. rdvr-control info 10"
+      exit
+    end
+    show_id = ARGV[1]
+    s = Show.find_by_id(show_id)
+    if s
+      puts "\tTitle      : " + s.title
+      puts "\tArtist     : " + s.artist
+      puts "\tDescription: " + s.description
+      puts "\tGenre      : " + s.genre
+      puts "\tWeekly?    : " + s.weekly
+      puts "\tStart      : " + s.start
+      puts "\tDuration   : " + s.duration
+      puts "\tHost       : " + s.host
+      puts "\tPort       : " + s.port
+      puts "\tURL        : " + s.url
     else
       puts "Could not find a show with ID #{show_id}."
       exit
