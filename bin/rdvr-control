@@ -24,7 +24,7 @@ case ARGV[0]
       if s.weekly
         puts "(#{s.id}) '#{s.title}' by '#{s.artist}' airs #{next_airing.strftime("%A")}s at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minute(s). Next airing is #{next_airing.strftime("%B %d, %Y")}."
       elsif next_airing
-        puts "##{s.id} - '#{s.title}' by '#{s.artist}' #{next_airing < Time.now ? 'aired' : 'airs'} #{next_airing.strftime("%A %B %d, %Y")} at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minute(s)."
+        puts "(#{s.id}) - '#{s.title}' by '#{s.artist}' #{next_airing < Time.now ? 'aired' : 'airs'} #{next_airing.strftime("%A %B %d, %Y")} at #{next_airing.strftime("%I:%M %p")} for #{s.duration} minute(s)."
       else
         puts "##{s.id} - '#{s.title}' by '#{s.artist}'."
       end
