@@ -84,16 +84,16 @@ case ARGV[0]
     show_id = ARGV[1]
     s = Show.find_by_id(show_id)
     if s
-      puts "\tTitle      : " + s.title
-      puts "\tArtist     : " + s.artist
-      puts "\tDescription: " + s.description
-      puts "\tGenre      : " + s.genre
-      puts "\tWeekly?    : " + s.weekly
-      puts "\tStart      : " + s.start
-      puts "\tDuration   : " + s.duration
-      puts "\tHost       : " + s.host
-      puts "\tPort       : " + s.port
-      puts "\tURL        : " + s.url
+      puts "\tTitle      : #{s.title}"
+      puts "\tArtist     : #{s.artist}"
+      puts "\tDescription: #{s.description}"
+      puts "\tGenre      : #{s.genre}"
+      puts "\tWeekly?    : #{s.weekly}"
+      puts "\tStart      : #{s.start}"
+      puts "\tDuration   : #{s.duration}"
+      puts "\tHost       : #{s.host}"
+      puts "\tPort       : #{s.port}"
+      puts "\tURL        : #{s.url}"
     else
       puts "Could not find a show with ID #{show_id}."
       exit
