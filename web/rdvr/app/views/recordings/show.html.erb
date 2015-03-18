@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Show:</strong>
+  <%= @recording.show_id %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @recording.filename %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @recording.title %>
+</p>
+
+<p>
+  <strong>Started:</strong>
+  <%= @recording.started %>
+</p>
+
+<p>
+  <strong>Finished:</strong>
+  <%= @recording.finished %>
+</p>
+
+<%= link_to 'Edit', edit_recording_path(@recording) %> |
+<%= link_to 'Back', recordings_path %>

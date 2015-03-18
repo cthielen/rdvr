@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @show.title %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @show.artist %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @show.description %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @show.genre %>
+</p>
+
+<p>
+  <strong>Weekly:</strong>
+  <%= @show.weekly %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @show.start %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @show.duration %>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @show.host %>
+</p>
+
+<p>
+  <strong>Port:</strong>
+  <%= @show.port %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @show.url %>
+</p>
+
+<%= link_to 'Edit', edit_show_path(@show) %> |
+<%= link_to 'Back', shows_path %>
