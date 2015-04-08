@@ -17,3 +17,15 @@ test/version_tmp
 tmp
 .DS_Store
 
+# Ignored compiled files
+*.o
+*.d
+fIcy
+fPls
+id3tool
+config.h
+*~
+
+Makefile.in
+aclocal.m4
+
