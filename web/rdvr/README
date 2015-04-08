@@ -1,0 +1,19 @@
+RDVR ("Radio DVR")
+==================
+Version 0.0
+Written by Christopher Thielen
+
+Reqiurements
+------------
+fIcy, id3tool
+
+FAQ
+---
+* I get an error on startup: "Cannot start RDVR: id3tool does not appear to be installed." or "Cannot start RDVR: fIcy does not appear to be installed." What's going on?
+
+RDVR requires two external command-line tools to record shows (fIcy) and modify MP3 metadata (id3tool). These must be installed prior to running RDVR. They should be available on your PATH.
+
+* You do realize "DVR" stands for "Digital Video Recorder", so "RDVR" stands for "Radio Digital Video Recorder" which makes no sense. You do realize that, right?
+
+You're damn pedantic, aren't you?
+
