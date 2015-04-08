@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Shows</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -14,7 +12,7 @@
       <th>Duration</th>
       <th>Host</th>
       <th>Port</th>
-      <th>Url</th>
+      <th>URL</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,7 +24,7 @@
         <td><%= show.artist %></td>
         <td><%= show.description %></td>
         <td><%= show.genre %></td>
-        <td><%= show.weekly %></td>
+        <td><%= show.weekly ? "Yes" : "No" %></td>
         <td><%= show.start %></td>
         <td><%= show.duration %></td>
         <td><%= show.host %></td>
@@ -42,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Show', new_show_path %>
+<%= link_to 'New Show', new_show_path, class: "btn btn-default" %>
